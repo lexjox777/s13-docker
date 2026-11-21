@@ -12,7 +12,7 @@ The `app` container provides everything:
 - Enrollment API
 - File-based demo persistence through the `app-data` Docker volume
 
-The application uses only the Node.js standard library and has no package dependencies. CI builds an image tagged with the full Git commit SHA on every branch push.
+The application uses only the Node.js standard library and has no package dependencies. CI builds and publishes an image tagged with the full Git commit SHA on every branch push.
 
 ## Tools used
 
@@ -50,4 +50,4 @@ Use `docker volume rm s13-training-camps-data` only when you intentionally want 
 
 ## CI/CD
 
-`.github/workflows/docker-build.yml` uses GitHub's `ubuntu-latest` hosted runner to build the image from the root `Dockerfile` on every branch push. Each image is tagged with the commit SHA. This workflow builds the image but does not publish it to a registry or deploy it. GitHub-hosted runner usage is subject to the free minutes and usage limits for the repository's plan and visibility.
+`.github/workflows/docker-build.yml` uses GitHub's `ubuntu-latest` hosted runner to build and publish `devopseasylearning/s13-training-camps:<commit-sha>` to Docker Hub on every branch push. Add the repository Actions secrets `DOCKERHUB_USERNAME` and `DOCKERHUB_TOKEN` before the workflow runs. Use a Docker Hub access token rather than an account password. GitHub-hosted runner usage is subject to the free minutes and usage limits for the repository's plan and visibility.
