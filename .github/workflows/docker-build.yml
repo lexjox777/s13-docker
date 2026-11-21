@@ -1,0 +1,20 @@
+name: Build S13 Training Camps
+
+on:
+  push:
+    branches:
+      - "**"
+
+jobs:
+  build:
+    name: Build Docker image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out commit
+        uses: actions/checkout@v4
+
+      - name: Verify Docker is available
+        run: docker version
+
+      - name: Build image for this commit
+        run: docker build --pull --tag "s13-training-camps:${GITHUB_SHA}" .
