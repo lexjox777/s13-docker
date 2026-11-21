@@ -1,5 +1,7 @@
 FROM node:22-alpine
 
+LABEL org.opencontainers.image.title="S13 Training Camps"
+
 WORKDIR /app
 
 COPY app/server.js ./server.js
